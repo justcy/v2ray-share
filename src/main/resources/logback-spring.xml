@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+    <property name="CONSOLE_LOG_PATTERN" value="${CONSOLE_LOG_PATTERN:-%clr(%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(\\(%file:%line\\)){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
+
+
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+    <!--<include resource="org/springframework/boot/logging/logback/file-appender.xml"/>-->
+
+    <springProfile name="dev">
+        <logger name="com.example.ShadowSocksShare" level="DEBUG"/>
+
+        <logger name="org.springframework.web" level="DEBUG"/>
+        <logger name="org.jsoup" level="DEBUG"/>
+        <logger name="org.hibernate" level="DEBUG"/>
+
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+            <!--<appender-ref ref="LOG_FILE"/>-->
+        </root>
+    </springProfile>
+
+    <springProfile name="prod">
+        <logger name="com.example.ShadowSocksShare" level="DEBUG"/>
+
+        <logger name="org.openqa.selenium" level="DEBUG"/>
+        <logger name="org.openqa.selenium" level="DEBUG"/>
+
+        <logger name="org.springframework.web" level="INFO"/>
+        <logger name="org.jsoup" level="INFO"/>
+        <logger name="org.hibernate" level="INFO"/>
+
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+    </springProfile>
+
+</configuration>

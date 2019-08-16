@@ -1,0 +1,70 @@
+# 配置参考：https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+
+
+# ========== 默认配置 ==========
+server:
+  servlet:
+    context-path: /
+    application-display-name: ShadowSocks-Share
+
+
+# ========== Spring ==========
+spring:
+  # profiles
+  profiles:
+    active: prod
+
+  # Spring H2 配置
+  h2:
+    console:
+      # 程序开启时就会启动h2 web consloe(默认启动：true)
+      enabled:  true
+      # 通过YOUR_URL/h2访问
+      path: /h2
+      DB_CLOSE_ON_EXIT: false
+      # 远程访问
+      settings.web-allow-others:  true
+
+  # Spring JPA 配置
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl:  true
+    show-sql:  true
+    open-in-view:  true
+    properties.hibernate.jdbc.time_zone:  GMT+8
+
+    hibernate:
+      # 使用Hibernate初始化数据库
+      ddl-auto:  create-drop
+
+  # thymeleaf
+  thymeleaf:
+    mode: HTML
+    encoding: UTF-8
+    cache: true
+
+  # Spring 国际化配置
+  messages:
+    basename: i18n/messages
+    encoding:  UTF-8
+    # 加载的资源包文件缓存持续时间
+    cache-duration:
+    # 没有特定的locale，则默认使用当下系统的设置
+    fallback-to-system-local: true
+
+  # 字符集
+  mandatory-file-encoding: UTF-8
+  tomcat.uri-encoding: UTF-8
+  messages.encoding: UTF-8
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+
+
+# ========== 其他 ==========
+# 启用HTTP响应压缩
+server.compression.enabled: true
+# 系统监控
+management.security.enabled:  false
