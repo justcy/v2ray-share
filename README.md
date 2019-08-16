@@ -1,6 +1,6 @@
 # 欢迎访问本项目!
 
-示例站点：https://justcy-ssr.herokuapp.com  
+示例站点：https://v2ray-share.herokuapp.com  
 
 本项目不具备代理及账号管理能力。只负责汇集目标站点信息，便于大家查看、订阅。账号来之不易，请支持源站点。
 
@@ -112,3 +112,6 @@ free-ss 代理 | PROXY_FREE-SS_SOCKS | proxy.free-ss.socks | boolean | false | �
 如果项目对你有帮助,你可以选择给我一些鼓励:)
 
 ![赞助](http://blog.kanter.cn/assets/images/donate.jpeg)
+=======
+# v2ray-share
+v2ray share 
