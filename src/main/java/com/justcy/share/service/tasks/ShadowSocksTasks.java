@@ -2,6 +2,8 @@ package com.justcy.share.service.tasks;
 
 import com.justcy.share.service.ShadowSocksCrawlerService;
 import com.justcy.share.service.ShadowSocksSerivce;
+import com.justcy.share.service.V2rayCrawlerService;
+import com.justcy.share.service.V2raySerivce;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
@@ -18,6 +20,9 @@ import org.springframework.stereotype.Component;
 public class ShadowSocksTasks {
 	@Autowired
 	private ShadowSocksSerivce shadowSocksSerivce;
+
+	@Autowired
+	private V2raySerivce v2raySerivce;
 
 	/*@Value("${health.url}")
 	private String healthURL;*/
@@ -65,6 +70,10 @@ public class ShadowSocksTasks {
 	@Autowired
 	@Qualifier("fndroidCrawlerServiceImpl")
 	private ShadowSocksCrawlerService fndroidCrawlerServiceImpl;
+
+	@Autowired
+	@Qualifier("freessCrawlerServiceImpl")
+	private V2rayCrawlerService freessCrawlerServiceImpl;
 
 
 	// https://global.ishadowx.net/
@@ -142,6 +151,12 @@ public class ShadowSocksTasks {
 	@Scheduled(cron = "0 10 0/2 * * ?")
 	public void fndroidCrawler() {
 		shadowSocksSerivce.crawlerAndSave(fndroidCrawlerServiceImpl);
+	}
+
+	// https://v2.freev2ray.org
+	@Scheduled(cron = "0 10 0/2 * * ?")
+	public void freessV2rayCrawler() {
+		v2raySerivce.crawlerAndSave(freessCrawlerServiceImpl);
 	}
 
 

@@ -39,7 +39,7 @@ public class ApplicationStartupListener {
 	@Async
 	@EventListener
 	public void handleOrderStateChange(ContextRefreshedEvent contextRefreshedEvent) {
-//		crawlerSet.parallelStream()/*.filter((service) -> (service instanceof Free_ssCrawlerServiceImpl))*/.forEach((service) -> shadowSocksSerivce.crawlerAndSave(service));
+		crawlerSet.parallelStream()/*.filter((service) -> (service instanceof Free_ssCrawlerServiceImpl))*/.forEach((service) -> shadowSocksSerivce.crawlerAndSave(service));
 		crawlerV2raySet.parallelStream()/*.filter((service) -> (service instanceof Free_ssCrawlerServiceImpl))*/.forEach((service) -> v2raySerivce.crawlerAndSave(service));
 		log.debug("================>{}", "初始扫描完成...");
 	}
