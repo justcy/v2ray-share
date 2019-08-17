@@ -5,7 +5,7 @@
 server:
   servlet:
     context-path: /
-    application-display-name: ShadowSocks-Share
+    application-display-name: V2ray-Share
 
 
 # ========== Spring ==========

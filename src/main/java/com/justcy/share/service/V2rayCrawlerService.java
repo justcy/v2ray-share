@@ -1,10 +1,9 @@
 package com.justcy.share.service;
 
-import com.google.gson.JsonParser;
+import com.alibaba.fastjson.JSON;
 import com.google.zxing.*;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
-import com.justcy.share.domain.ShadowSocksDetailsEntity;
 import com.justcy.share.domain.V2rayDetailsEntity;
 import com.justcy.share.domain.V2rayEntity;
 import lombok.extern.slf4j.Slf4j;
@@ -72,7 +71,7 @@ public abstract class V2rayCrawlerService {
 		@SuppressWarnings("deprecation")
 		Connection connection = Jsoup.connect(url)
 				.userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36")
-				// .referrer("https://www.google.com/")
+//				.referrer("https://www.google.com/")
 				.ignoreContentType(true)
 				.followRedirects(true)
 				.ignoreHttpErrors(true)
@@ -105,8 +104,7 @@ public abstract class V2rayCrawlerService {
 		if (StringUtils.isNotBlank(link) && StringUtils.startsWithIgnoreCase(link, "vmess")) {
 			String v2rayInfoStr = new String(Base64.decodeBase64(StringUtils.remove(link, "vmess://").getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8);
 			try {
-				JsonParser jsonParser = new JsonParser();
-				Map maps = (Map) jsonParser.parse(v2rayInfoStr);
+				Map maps = (Map) JSON.parse(v2rayInfoStr.trim());
 				V2rayDetailsEntity enity = new V2rayDetailsEntity(maps);
 				return enity;
 			} catch (Exception e) {

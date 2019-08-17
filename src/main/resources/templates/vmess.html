@@ -38,30 +38,30 @@
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">Vmess 订阅</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" th:href="@{/subscribe(valid=1)}" target="_blank">有效 Vmess 订阅</a>
-                        <a class="dropdown-item" th:href="@{/subscribe(valid=0)}" target="_blank">全部 Vmess 订阅</a>
-                        <a class="dropdown-item" th:href="@{/subscribeJson}" target="_blank">随机 JSON 订阅</a>
+                        <a class="dropdown-item" th:href="@{/v2ray/subscribe(valid=1)}" target="_blank">有效 Vmess 订阅</a>
+                        <a class="dropdown-item" th:href="@{/v2ray/subscribe(valid=0)}" target="_blank">全部 Vmess 订阅</a>
+                        <a class="dropdown-item" th:href="@{/v2ray/subscribeJson}" target="_blank">随机 JSON 订阅</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown" th:unless="${#lists.isEmpty(v2rayList)}">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">爬取列表</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown02">
-                        <a class="dropdown-item" th:href="${ssr.targetURL}" target="_blank"
-                           th:each="ssr,iterStat : ${v2rayList}">
+                        <a class="dropdown-item" th:href="${v2ray.targetURL}" target="_blank"
+                           th:each="v2ray,iterStat : ${v2rayList}">
                             <span class="badge badge-primary">
-                                <th:block th:if="${ssr.valid}">
+                                <th:block th:if="${v2ray.valid}">
                                     状态：<i class="fa fa-check-circle" aria-hidden="true">&nbsp; </i>
                                 </th:block>
-                                <th:block th:unless="${ssr.valid}">
+                                <th:block th:unless="${v2ray.valid}">
                                     状态：<i class="fa fa-times-circle" aria-hidden="true">&nbsp; </i>
                                 </th:block>
                             </span>
                             <span class="badge badge-info">
-                                账号数量：<th:block th:text="${#lists.size(ssr.v2raySet)}"></th:block>
+                                账号数量：<th:block th:text="${#lists.size(v2ray.v2raySet)}"></th:block>
                             </span>
                             <span class="badge badge-warning">
-                                <th:block th:text="${ssr.targetURL}"></th:block>
+                                <th:block th:text="${v2ray.targetURL}"></th:block>
                             </span>
                         </a>
                     </div>
@@ -190,7 +190,7 @@
         <p class="float-right">
             <a href="#"><i class="fa fa-arrow-up" aria-hidden="true"></i>&nbsp;返回顶部</a>
         </p>
-        <p class="text-muted">&copy; 2019 justcy, Inc. 免费、开源的 SSR 账号爬虫</p>
+        <p class="text-muted">&copy; 2019 justcy, Inc. 免费、开源的 v2ray 账号爬虫</p>
     </div>
 </footer>
 

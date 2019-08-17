@@ -25,9 +25,9 @@ import java.util.Map;
 @ToString
 // @RequiredArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(exclude = {"id", "remarks", "group"})
+@EqualsAndHashCode(exclude = {"id", "address", "port"})
 public class V2rayDetailsEntity implements Serializable {
-	private static final long serialVersionUID = 952212276705742190L;
+	private static final long serialVersionUID = 952212276705742191L;
 
 	// 必填字段
 	@Id
@@ -77,7 +77,7 @@ public class V2rayDetailsEntity implements Serializable {
 
 	@Column
 	// @NonNull
-	private String v;    // v
+	private int v;    // v
 	@Column
 	private String type;    // type
 
@@ -92,7 +92,7 @@ public class V2rayDetailsEntity implements Serializable {
 
 	public V2rayDetailsEntity(Map<String,Object> v2ray) {
 		this.address = (String) v2ray.get("add");
-		this.port = (Integer) v2ray.get("port");
+		this.port = Integer.parseInt((String) v2ray.get("port"));
 		this.uuid= (String) v2ray.get("id");
 		this.aid = (Integer) v2ray.get("aid");
 		this.host = (String) v2ray.get("host");
@@ -102,7 +102,7 @@ public class V2rayDetailsEntity implements Serializable {
 		this.host = (String) v2ray.get("host");
 		this.path = (String) v2ray.get("path");
 		this.tls = (String) v2ray.get("tls");
-		this.v = (String) v2ray.get("v");
+		this.v = (Integer) v2ray.get("v");
 	}
 
 	public String getJsonStr() throws JsonProcessingException {

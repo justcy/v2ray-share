@@ -8,7 +8,7 @@
     <!--<include resource="org/springframework/boot/logging/logback/file-appender.xml"/>-->
 
     <springProfile name="dev">
-        <logger name="com.example.ShadowSocksShare" level="DEBUG"/>
+        <logger name="com.justcy.share" level="DEBUG"/>
 
         <logger name="org.springframework.web" level="DEBUG"/>
         <logger name="org.jsoup" level="DEBUG"/>
@@ -21,7 +21,7 @@
     </springProfile>
 
     <springProfile name="prod">
-        <logger name="com.example.ShadowSocksShare" level="DEBUG"/>
+        <logger name="com.justcy.share" level="DEBUG"/>
 
         <logger name="org.openqa.selenium" level="DEBUG"/>
         <logger name="org.openqa.selenium" level="DEBUG"/>

@@ -4,12 +4,16 @@ import com.justcy.share.domain.V2rayDetailsEntity;
 import com.justcy.share.service.V2rayCrawlerService;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.net.InetSocketAddress;
+import java.net.Proxy;
 import java.util.*;
 
 /**
@@ -21,7 +25,7 @@ import java.util.*;
 public class FreessCrawlerServiceImpl extends V2rayCrawlerService {
 
 	// 目标网站 URL
-	private static final String TARGET_URL = "https://v2.freev2ray.org/";
+	private static final String TARGET_URL = "https://v2.freev2ray.org";
 
 	// 协议
 	private final static Map<String, String> protocolMap = new HashMap<>();
@@ -64,7 +68,21 @@ public class FreessCrawlerServiceImpl extends V2rayCrawlerService {
 				log.error(e.getMessage(), e);
 			}
 		}
-		return new HashSet<>();
+		return set;
+	}
+	@Override
+	protected Connection getConnection(String url) {
+		@SuppressWarnings("deprecation")
+		Connection connection = Jsoup.connect(url)
+				.userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36")
+				.ignoreContentType(true)
+				.followRedirects(true)
+				.ignoreHttpErrors(true)
+				.validateTLSCertificates(true)
+				.timeout(TIME_OUT);
+		if (isProxyEnable())
+			connection.proxy(new Proxy(Proxy.Type.HTTP, new InetSocketAddress(getProxyHost(), getProxyPort())));
+		return connection;
 	}
 	/**
 	 * 目标网站 URL

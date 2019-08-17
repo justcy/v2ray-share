@@ -48,7 +48,7 @@ public class V2rayEntity implements Serializable {
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)   // 级联保存、更新、删除、刷新;延迟加载
 	@JoinColumn(name = "v2ray_id")                                        // 在 Details 表增加一个外键列来实现一对多的单向关联
-	private Set<V2rayDetailsEntity> v2raySet;           // 一对多，网站 ShadowSocks 信息
+	private Set<V2rayDetailsEntity> v2raySet;           // 一对多，网站 v2ray 信息
 
 	public V2rayEntity(String targetURL, String title, boolean valid, Date finishTime) {
 		this.targetURL = targetURL;
