@@ -30,7 +30,7 @@
         <logger name="org.jsoup" level="INFO"/>
         <logger name="org.hibernate" level="INFO"/>
 
-        <root level="INFO">
+        <root level="ERROR">
             <appender-ref ref="CONSOLE"/>
         </root>
     </springProfile>
