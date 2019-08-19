@@ -57,6 +57,8 @@ public class FreessCrawlerServiceImpl extends V2rayCrawlerService {
 				String vmessLink = element.attr("data-clipboard-text");
 
 				V2rayDetailsEntity v2rayDetailsEntity = parseLink(vmessLink);
+
+				v2rayDetailsEntity.setValidTime(new Date());
 				// 测试网络
 				if (isReachable(v2rayDetailsEntity))
 					v2rayDetailsEntity.setValid(true);

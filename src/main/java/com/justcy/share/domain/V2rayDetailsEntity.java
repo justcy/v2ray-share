@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.*;
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -91,18 +93,18 @@ public class V2rayDetailsEntity implements Serializable {
 	private String title;        // 网站名
 
 	public V2rayDetailsEntity(Map<String,Object> v2ray) {
-		this.address = (String) v2ray.get("add");
-		this.port = Integer.parseInt((String) v2ray.get("port"));
-		this.uuid= (String) v2ray.get("id");
-		this.aid = (Integer) v2ray.get("aid");
-		this.host = (String) v2ray.get("host");
-		this.net = (String) v2ray.get("net");
-		this.ps = (String) v2ray.get("ps");
-		this.type = (String) v2ray.get("type");
-		this.host = (String) v2ray.get("host");
-		this.path = (String) v2ray.get("path");
-		this.tls = (String) v2ray.get("tls");
-		this.v = (Integer) v2ray.get("v");
+		this.address = v2ray.get("add").toString();
+		this.port = Integer.parseInt(v2ray.get("port").toString());
+		this.uuid=  v2ray.get("id").toString();
+		this.aid = Integer.parseInt(v2ray.get("aid").toString());
+		this.host =v2ray.get("host").toString();
+		this.net = v2ray.get("net").toString();
+		this.ps = v2ray.get("ps").toString();
+		this.type = v2ray.get("type").toString();
+		this.host = v2ray.get("host").toString();
+        this.path = v2ray.containsKey("path") ? v2ray.get("path").toString() : "";
+        this.tls = v2ray.get("tls").toString();
+		this.v = Integer.parseInt(v2ray.get("v").toString());
 	}
 
 	public String getJsonStr() throws JsonProcessingException {
