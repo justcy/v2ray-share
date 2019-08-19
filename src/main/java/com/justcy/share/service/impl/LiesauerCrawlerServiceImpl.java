@@ -56,7 +56,7 @@ public class LiesauerCrawlerServiceImpl extends ShadowSocksCrawlerService {
 					ss.setValid(false);
 					ss.setValidTime(new Date());
 					ss.setTitle("免费账号 | 云端框架");
-					ss.setRemarks("Justcy_B");
+					ss.setRemarks(ss.getServer()+":"+ss.getServer_port()+"(liesauser)");
 					ss.setGroup("liesauser");
 
 					// 测试网络
