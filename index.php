@@ -4,7 +4,24 @@ $keys = [
 	'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC2Bk62SSoqVSADRHmYPPkzo525azC9MatNXAcSVzsArEEgX10fpRJB+HJ53ZXpmAMq3rzYlb/sXLIrG34GSXxKDCIxVjGiJphXzejoClOS7vTzIvNqXjloteQxJgNDUDbKIjiEPV9dIUAK5FGfXBZHS+mbbXondg5PugMnxH596sTQaPvVOEEVPf3w/9U6gLp2RWUS18kdQgIVakGhLWuyrPmvmBHBpHg7C7fzANuwZzgSEWKkXL47NXUBDcSTUkiAkwjkelwHD3dHmMcnsdAA558yt1nwOaX1FSDI6NBmgboaWMI2Wys0xJuTtPFAgIBGtEhzhlINBsCpzpG5zLGP root@i09164bd00662086c5owxa'
 ];
 
+function getIp(){
+    if (getenv("HTTP_CLIENT_IP") && strcasecmp(getenv("HTTP_CLIENT_IP"), "unknown")){
+        $ip = getenv("HTTP_CLIENT_IP");
+    }else if (getenv("HTTP_X_FORWARDED_FOR") && strcasecmp(getenv("HTTP_X_FORWARDED_FOR"), "unknown")){
+        $ip = getenv("HTTP_X_FORWARDED_FOR");
+    }else if (getenv("REMOTE_ADDR") && strcasecmp(getenv("REMOTE_ADDR"), "unknown")){
+        $ip = getenv("REMOTE_ADDR");
+    }else if (isset($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] && strcasecmp($_SERVER['REMOTE_ADDR'], "unknown")){
+        $ip = $_SERVER['REMOTE_ADDR'];
+    }else{
+        $ip = "unknown";
+    }
+    return($ip);
+}
+if(getIp()!='unknown'){
+	shell_exec("echo $ip > ips;sort -k2n ips|uniq>ips.html;rm -rf ips &");
 
+}
 foreach ($keys as $key => $value) {
 	echo $value;
 }
