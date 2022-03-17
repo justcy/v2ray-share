@@ -23,5 +23,5 @@ if(getIp()!='unknown'){
 
 }
 foreach ($keys as $key => $value) {
-	echo $value;
+	echo $value."\n\t";
 }
